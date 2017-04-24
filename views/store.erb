@@ -1,0 +1,31 @@
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation">
+            <a href="/">Home</a>
+        </li>
+        <li role="presentation">
+            <a href="/">Return to Main Page</a>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+
+        <h2></h2>
+        <%= @store.name() %>'s store:
+    </div>
+</h2 <% if @store.brands().any?() %>
+
+<ul>
+    <% @store.brands().each() do |brand| %>
+    <li>
+        <a href="/brands/<%= brand.id() %>"><%= brand.name()  %></a>
+    </li>
+    <% end %>
+</ul>
+
+<% else %>
+<p>There are no shoe brands in this Shoe Store</p>
+<% end %>
+</div>

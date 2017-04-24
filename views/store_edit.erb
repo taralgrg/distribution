@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Update/Delete
+            <%=@store.name() %>'s Name
+        </div>
+        <div class="panel-body">
+
+            <form action="/stores/<%= @store.id() %>" method="post" style="display: inline;">
+                <input name="_method" type="hidden" value="patch">
+
+                <label for="name">Rename the Store's name:</label>
+                <input id="name" name="name" type="text">
+
+                <button type="submit">Update</button>
+            </form>
+
+            <form action="/stores/<%= @store.id() %>" method="post" style="display: inline;">
+                <input name="_method" type="hidden" value="delete">
+
+                <button type="submit">Delete Store</button>
+            </form>
+        </div>
+    </div>
+    <% if @store.brands().any?() %>
+    <h3>Here are all the brands in this Store:</h3>
+
+    <ul>
+        <% @store.brands().each() do |brand| %>
+        
+        <li>
+            <a href="/brands/<%= brand.id() %>"><%= brand.name %></li>
+            <% end %>
+        </ul>
+
+    <% else %>
+        <p>There are no Shoe brands listed in this Store</p>
+        <% end %>
+    </div>

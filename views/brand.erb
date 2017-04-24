@@ -1,0 +1,35 @@
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active">
+            <a href="/brands/<%= @brand.id() %>/edit">Edit Shoe Brand details
+                <%= @brand.name() %></a>
+        </li>
+        <li role="presentation" class="active">
+            <a href="/">Return to Main Page</a>
+        </li>
+    </ul>
+</div>
+<br/><br/>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Current Shoe Stores this brand is listed in:
+        </div>
+        <div class="panel-body">
+            Brand Name:
+            <%= @brand.name() %>
+
+            <% if @brand.stores().any?() %>
+
+            <ul>
+                <% @brand.stores().each() do |store| %>
+                <li><%= store.name()%></li>
+                <% end %>
+            </ul>
+
+        <% else %>
+            <p>This Shoe Brand is not listed in any Store</p>
+            <% end %>
+        </div>
+    </div>

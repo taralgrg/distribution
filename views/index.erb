@@ -1,0 +1,107 @@
+<div class="container">
+  <h1>Shoe Store</h1>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        List a New Store:
+    </div>
+    <div class="panel-body">
+        <form action="/" method="post">
+            <label for="name">Input the Store Name:</label>
+            <input id="name" name="name" type="text">
+
+            <button type="submit">Add New Store</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        List a New Brand:
+    </div>
+    <div class="panel-body">
+        <form action="/b" method="post">
+            <label for="name">Input the Brand Name:</label>
+            <input id="name" name="name" type="text">
+
+            <button type="submit">Add New Brand</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Add Shoe brands to any Shoe Stores:
+    </div>
+    <div class="panel-body">
+        <form action="/brands" method="post">
+            <label for="store_id">Select a Store</label>
+            <select id='store_id' name='store_id' type='text'>
+                <% @stores.each() do |store| %>
+                <option value="<%= store.id()%>">
+                    <%= store.name() %>
+                </option>
+                <% end %>
+            </select>
+
+             <!-- <label for="name">Name of the Brand:</label>
+            <input id="name" name="name" type="text"> -->
+
+            <form action="/stores" method="post">
+                <label for="brand_id">Select a Brand</label>
+                <select id='brand_id' name='brand_id' type='text'>
+                    <% @brands.each() do |brand| %>
+                    <option value="<%= brand.id()%>">
+                        <%= brand.name() %>
+                    </option>
+                    <% end %>
+                </select>
+
+            <button type="submit">Add New Brand</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <% if @stores.any?() %>
+    <div class="panel-heading">
+
+        Click on the Stores to see different brands of Shoes:
+    </div>
+    <div class="panel-body">
+
+        <ul class="list-group">
+            <% @stores.each do |store| %>
+            <li class="list-group-item">
+                <a href="/stores/<%= store.id() %>"><%= store.name() %>
+                </a>
+            </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <p>There are no Stores yet!</p>
+        <% end %>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <% if @brands.any?() %>
+    <div class="panel-heading">
+
+        List of available brands:
+    </div>
+    <div class="panel-body">
+
+        <ul class="list-group">
+            <% @brands.each do |brand| %>
+            <li class="list-group-item">
+                <a href="/brands/<%= brand.id() %>"><%= brand.name() %>
+                </a>
+            </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <p>There are no brands yet!</p>
+        <% end %>
+    </div>
+</div>

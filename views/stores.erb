@@ -1,0 +1,18 @@
+<h1>Your Current Stores</h1>
+
+<% if @stores.any?() %>
+<h3>Here are all the Shoe Brands listed in this store:</h3>
+
+<ul>
+    <% @stores.each() do |store| %>
+    <li>
+        <a href="/stores/<%=store.id()%>"><%= store.name() %></a>
+    </li>
+    <% end %>
+</ul>
+
+<% else %>
+
+<p>There are no stores yet!</p>
+
+<% end %>
