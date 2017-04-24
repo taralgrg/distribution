@@ -34,6 +34,7 @@ post("/") do
   end
 
  post("/stores") do
+   binding.pry
    name = params.fetch("name")
    store = Store.new({:name => name, :id => nil})
    store.save()
@@ -69,11 +70,11 @@ post("/") do
  end
 
  post("/brands") do
-    name = params.fetch("name")
     store_id = params.fetch("store_id").to_i()
-    brand = Brand.new({:name => name})
-    brand.save()
+    brand_id = params.fetch("brand_id").to_i()
     @store = Store.find(store_id)
+    @brand = Brand.find(brand_id)
+    Annoying.create({:brand_id => brand_id, :store_id => store_id})
     erb(:store)
   end
 
